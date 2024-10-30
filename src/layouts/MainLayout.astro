@@ -1,0 +1,45 @@
+---
+//import { ViewTransitions } from 'astro:transitions';
+import NavBar from '@components/shared/NavBar.astro';
+import {siteInfo} from '../consts/site-info';
+
+interface Props{
+    title: string;
+    description?: string;
+	image?: string;
+}
+
+const {title = siteInfo.title, description= siteInfo.description, image} = Astro.props;
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device" />
+		<meta name="generator" content={Astro.generator} />
+
+        <meta name="description" content={description}/>
+		<meta name="author" content={'Moise aizpurua'}/>
+
+        <meta property="og:title" content={title}/>
+        <meta property="og:description" content={description}/> 
+        <meta property="og:image" content={'https://i.pinimg.com/originals/0e/cf/c8/0ecfc8a36467d3ad3ca99f6aaf186b27.jpg'}/>
+
+		<title>{title}</title>
+
+		<!-- <ViewTransitions/> -->
+		 <style>
+			@view-transition {
+				navigation: auto;
+			}
+		 </style>
+	</head>
+	<body class="bg-slate-800 text-slate-100 m-auto max-w-3xl">
+       <main class="mt-10 m-auto max-w-3xl mx-4">
+	   <NavBar/>
+		   <slot/>
+	   </main>
+	</body>
+</html>
